@@ -6,12 +6,26 @@
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-6" action="#" method="POST">
+            <form class="space-y-6" action="/login" method="POST">
+                @csrf
+
+                @if ($errors->any())
+                    <div class="text-sm text-red-600 mb-1">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div>
                     <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
                     <div class="mt-2">
                         <input type="email" name="email" id="email" autocomplete="email" required
                             class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6">
+                            @error('email')
+                                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                            @enderror
                     </div>
                 </div>
 
@@ -22,6 +36,9 @@
                     <div class="mt-2">
                         <input type="password" name="password" id="password" autocomplete="current-password" required
                             class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6">
+                            @error('password')
+                                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                            @enderror
                     </div>
                 </div>
 

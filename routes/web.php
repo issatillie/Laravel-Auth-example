@@ -14,8 +14,16 @@ Route::view('/', 'index');
 // LOGIN ROUTES
 // =============================================
 Route::view('/login', 'login');
+Route::post('/login', [LoginController::class, 'store']);
 
 // =============================================
 // REGISTRATION ROUTES
 // =============================================
 Route::view('/register', 'register');
+Route::post('/register', [RegistrationController::class, 'store']);
+
+// =============================================
+// DASHBOARD ROUTES
+// =============================================
+Route::view('/dashboard', 'dashboard');
+Route::post('/logout', [LoginController::class, 'destroy']);
